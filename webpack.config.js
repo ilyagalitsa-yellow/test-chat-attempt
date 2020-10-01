@@ -1,12 +1,12 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-
 module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
     },
     resolve: {
+        extensions: ['.js', '.jsx', '.json', '.png'],
         modules: [path.join(__dirname, 'src'), 'node_modules'],
         alias: {
             react: path.join(__dirname, 'node_modules', 'react'),

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Hello from './Hello.jsx';
+import Hello from './Hello';
 
 let rightRoot = document.getElementById('root');
 if (!rightRoot) { 

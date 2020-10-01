@@ -3,7 +3,7 @@ import './Hello.css';
 const Hello = () => {
     return (
         <h1 className="hello">
-            Hello
+            Hello <span className="world"> World</span>
         </h1>
     );
 };
