@@ -5,12 +5,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        var APP_NAME = 'chat.bundle.js';
+        window.chatSettings = {
+            app_name: APP_NAME,
+            app_title: "Title1",
+            isBubble: false,
+            rootName: 'reactRoot'
+        };
 
+        (function () {
+            var w = window;
+            var ic = w.Chat;
+            if (typeof ic === "function") {
+                ic('reattach_activator');
+                ic('update', w.chatSettings);
+            } else {
+                var d = document;
+                var i = function () {
+                    i.c(arguments);
+                };
+                i.q = [];
+                i.c = function (args) {
+                    i.q.push(args);
+                };
+
+                w.Chat = i;
+                var l = function () {
+                    var s = d.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = 'http://192.168.31.151:3000/' + APP_NAME;
+                    var x = d.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(s, x);
+                };
+                if (document.readyState === 'complete') {
+                    l();
+                } else if (w.attachEvent) {
+                    w.attachEvent('onload', l);
+                } else {
+                    w.addEventListener('load', l, false);
+                }
+            }
+        })();
+        // (function (m, e, t, r, i, k, a) {
+        //     m[i] = m[i] || function () {
+        //         (m[i].a = m[i].a || []).push(arguments)
+        //     };
+        //     m[i].l = 1 * new Date();
+        //     k = e.createElement(t),
+        //         a = e.getElementsByTagName(t)[0],
+        //         k.async = 1,
+        //         k.src = r,
+        //         a.parentNode.insertBefore(k, a)
+        // })
+        //     (window, document, "script", "http://192.168.31.151:3000/chat.bundle.js", "ym");
+        // сделать команду как changeSettings мб чтоб менять настройки 
+        const toggle = () => {
+            const isBubble = !!window.chatSettings.isBubble;
+            window.chatSettings.isBubble = !isBubble;
+            Chat('bubble', { bubble: isBubble })
+            window.dispatchEvent(new CustomEvent('chatEvent', {detail: Chat.q}));
+        };
+        setTimeout(() => {
+            Chat('inc', { width: '900px', height: '600px' })
+            Chat('dec', { width: '300px', height: '200px' })
+            console.log(Chat.q);
+        })
+    </script>
 </head>
 
 <body>
-
+    <button onclick="toggle()">Click</button>
 </body>
-<script src="https://test-chat-2c252.web.app/chat.bundle.js"></script>
+
+<!-- <script src="https://test-chat-2c252.web.app/chat.bundle.js"></script> -->
 
 </html>

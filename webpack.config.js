@@ -7,23 +7,37 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
+const optimization = () => {
+    const config = {
+
+    };
+    if (!isDev) {
+        config.minimizer = [
+            new TerserJSPlugin()
+        ];
+        config.minimize = true;
+    }
+
+    return config;
+};
+
 const styleLoader = (extra) => {
-    const array = [{
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-            hmr: !isDev,
-            reloadAll: true,
-        }
-    }, 'css-loader'];
+    const array = [
+        //     {
+        //     loader: MiniCssExtractPlugin.loader,
+        //     options: {
+        //         hmr: !isDev,
+        //         reloadAll: true,
+        //     }
+        // }
+        'style-loader'
+        , 'css-loader'];
     extra && array.push(extra);
     return array;
 };
 
 module.exports = {
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserJSPlugin()],
-    },
+    optimization: optimization(),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'chat.bundle.js',
@@ -76,6 +90,6 @@ module.exports = {
         //     }]
         // }),
         new FaviconsWebpackPlugin('./src/favicon.ico'),
-        new MiniCssExtractPlugin({ filename: '[name].css', chunkFilename: '[id].css' })
+        new MiniCssExtractPlugin({ filename: '[name].css' })
     ],
 };
