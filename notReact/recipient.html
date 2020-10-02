@@ -7,6 +7,7 @@
     <title>Document</title>
     <script>
         var APP_NAME = 'chat.bundle.js';
+
         window.chatSettings = {
             app_name: APP_NAME,
             app_title: "Title1",
@@ -21,6 +22,7 @@
                 ic('reattach_activator');
                 ic('update', w.chatSettings);
             } else {
+                // делает функцию которая все сетает в массив
                 var d = document;
                 var i = function () {
                     i.c(arguments);
@@ -48,24 +50,14 @@
                 }
             }
         })();
-        // (function (m, e, t, r, i, k, a) {
-        //     m[i] = m[i] || function () {
-        //         (m[i].a = m[i].a || []).push(arguments)
-        //     };
-        //     m[i].l = 1 * new Date();
-        //     k = e.createElement(t),
-        //         a = e.getElementsByTagName(t)[0],
-        //         k.async = 1,
-        //         k.src = r,
-        //         a.parentNode.insertBefore(k, a)
-        // })
-        //     (window, document, "script", "http://192.168.31.151:3000/chat.bundle.js", "ym");
-        // сделать команду как changeSettings мб чтоб менять настройки 
+
+        var event = new CustomEvent('chatEvent', {detail: Chat.q});
+        // при нажатии на кнопку передается ивент и все меняется, тольео это не очень достается из реакта
         const toggle = () => {
             const isBubble = !!window.chatSettings.isBubble;
             window.chatSettings.isBubble = !isBubble;
             Chat('bubble', { bubble: isBubble })
-            window.dispatchEvent(new CustomEvent('chatEvent', {detail: Chat.q}));
+            window.dispatchEvent(event);
         };
         setTimeout(() => {
             Chat('inc', { width: '900px', height: '600px' })

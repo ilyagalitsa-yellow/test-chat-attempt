@@ -20,33 +20,3 @@ if (rootName || !rightRoot) {
 } else {
     render(<Hello res={{ width: '', height: '' }} />, rightRoot);
 }
-
-// if (!rightRoot) {
-//     const div = document.createElement('div');
-//     div.id = 'reactRoot';
-//     console.log(document);
-//     document.body.appendChild(div);
-// }
-
-// const handleBubble = () => {
-//     console.log(window.chatSettings);
-//     console.log(window.chatSettings.isBubble);
-//     if (window.chatSettings && window.chatSettings.isBubble) {
-//         render(<Bubble res={res} />, document.getElementById('reactRoot'));
-//     } else {
-//         render(<Hello res={res} />, document.getElementById('reactRoot'));
-//     }
-// };
-
-// function Chat (action = 'init', rest){
-
-//     res = rest;
-//     handleBubble();
-// };
-
-// const q = ['fdfdf']
-
-// Chat.__proto__.q = q;
-
-// window.Chat = Chat;
-// handleBubble();
