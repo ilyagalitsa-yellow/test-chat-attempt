@@ -16,6 +16,11 @@ if (rootName || !rightRoot) {
     div.id = rootName || 'reactRoot';
     console.log(document);
     document.body.appendChild(div);
+    const event = new CustomEvent('chatEvent', { detail: Chat.q });
+    Chat.q.push = function () {
+        window.dispatchEvent(event);
+        return Array.prototype.push.apply(this, arguments);
+    };
     render(<ChatApp res={{ width: '', height: '' }} />, document.getElementById(div.id));
 } else {
     render(<Hello res={{ width: '', height: '' }} />, rightRoot);

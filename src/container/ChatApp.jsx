@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Bubble from '../Bubble';
 import Hello from '../Hello';
 // тут можно сделать хук для парса аргументов
+// (done) можно попробовать второй варианта оттуда https://stackoverflow.com/questions/5100376/how-to-watch-for-array-changes
 const ChatApp = ({ res }) => {
     const [argumentsArray, setArgumentsArray] = useState(Chat.q);
 
@@ -15,7 +16,7 @@ const ChatApp = ({ res }) => {
         };
     }, []);
 
-// в разработке
+    // в разработке
     const [isBubble, setBubble] = useState(!!window.chatSettings.isBubble);
 
     console.log(argumentsArray);
